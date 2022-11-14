@@ -22,5 +22,5 @@ def create_apikey():
     json_object = json.dumps(dictionary, indent=4)
     
     # Writing to sample.json
-    with open("D:/project/text_to_speech_application/ai-learning-text-to-speech-93061333450a.json", "w") as outfile:
+    with open("ai-learning-text-to-speech-93061333450a.json", "w") as outfile:
         outfile.write(json_object)
