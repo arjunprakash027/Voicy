@@ -8,6 +8,14 @@
         padding: 70
         spacing: 30
 
+        GridLayout:
+            size_hint_y: None
+
+
+            cols: 2
+            rows: 0
+            padding: [20, 30, 20, 30]
+            spacing: 10
         Button:
             text: 'audio player'
             size_hint: 0.3, 0.3
@@ -134,13 +142,13 @@
     Button:
         text: 'audio player'
         size_hint: 0.07, 0.07
-        pos: 100, 500
+        pos: 300, 500
         on_press:
             root.manager.transition.direction = 'left'
             root.manager.current = 'audio'
     Button:
         size_hint: 0.07, 0.07
-        pos: 35, 500
+        pos: 200, 500
         text: 'back'
         on_press:
             root.manager.transition.direction = 'right'

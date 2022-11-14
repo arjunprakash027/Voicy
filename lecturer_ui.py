@@ -10,15 +10,24 @@ from playsound import playsound
 from converter import convert_to_speech
 from credentials import *
 from delete_file import *
+import logging
+logging.basicConfig(filename="debug.log",
+                    format='%(asctime)s %(message)s',
+                    filemode='w')
+logger = logging.getLogger()
+ 
+# Setting the threshold of logger to DEBUG
+logger.setLevel(logging.DEBUG)
 
 
-Builder.load_file("menu.kv")
+Builder.load_file("menu_new.kv")
         
 
 class MyLayout(Screen):
     def selected(self, filename):
         try:   # type of files to select 
             delete_files()
+            logger.info("files deleted")
             for entry in filename:
                 self.ids.file_label2.text = "converted {} to speech".format(os.path.split(entry)[1])
             for entry in filename:
@@ -26,7 +35,8 @@ class MyLayout(Screen):
                 text = ('''{}'''.format(f.read()))
                 file = open("text_files/{}".format(os.path.split(entry)[1]), 'w')
                 file.write(text)
-                file.close() 
+                file.close()
+                logger.info("{} replicated".format(entry)) 
             content = {}
             entries = os.listdir('text_files/')
             for entry in entries:

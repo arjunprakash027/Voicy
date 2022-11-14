@@ -4,6 +4,14 @@ from urllib import response
 from google.cloud import texttospeech_v1
 import json
 from credentials import *
+import logging
+logging.basicConfig(filename="debug.log",
+                    format='%(asctime)s %(message)s',
+                    filemode='w')
+logger = logging.getLogger()
+ 
+# Setting the threshold of logger to DEBUG
+logger.setLevel(logging.DEBUG)
 
 
 def convert_to_speech(text,filename):
@@ -24,7 +32,7 @@ def convert_to_speech(text,filename):
         ssml_gender = texttospeech_v1.SsmlVoiceGender.FEMALE
     )
 
-    print("Speech converting {} file on process!!".format(filename))
+    logger.info("converting {} on process".format(filename))
     audio_config = texttospeech_v1.AudioConfig(
         audio_encoding = texttospeech_v1.AudioEncoding.MP3,
         speaking_rate = setting_file['speaking_rate']
